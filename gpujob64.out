@@ -1,0 +1,61 @@
+==========================================
+SLURM_JOB_ID = 22999965
+SLURM_JOB_NODELIST = b02-01
+TMPDIR = /tmp/SLURM_22999965
+==========================================
+PyTorch is already installed.
+Ninja is already installed.
+STAGE:2024-04-27 23:02:06 4477:4477 ActivityProfilerController.cpp:314] Completed Stage: Warm Up
+STAGE:2024-04-27 23:02:06 4477:4477 ActivityProfilerController.cpp:320] Completed Stage: Collection
+STAGE:2024-04-27 23:02:06 4477:4477 ActivityProfilerController.cpp:324] Completed Stage: Post Processing
+STAGE:2024-04-27 23:02:06 4477:4477 ActivityProfilerController.cpp:314] Completed Stage: Warm Up
+Max shared memory: 49152, requested shared memory: 28672 
+STAGE:2024-04-27 23:02:06 4477:4477 ActivityProfilerController.cpp:320] Completed Stage: Collection
+STAGE:2024-04-27 23:02:06 4477:4477 ActivityProfilerController.cpp:324] Completed Stage: Post Processing
+------------------------- profiling standard attention -------------------------
+-------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                             Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                     aten::matmul         0.39%     104.000us        63.90%      16.846ms       8.423ms      85.000us         0.32%      17.032ms       8.516ms             2  
+                                        aten::bmm        16.24%       4.281ms        62.95%      16.596ms       8.298ms      16.806ms        63.51%      16.806ms       8.403ms             2  
+                                        aten::mul         0.19%      49.000us        19.45%       5.127ms       5.127ms       5.110ms        19.31%       5.110ms       5.110ms             1  
+                                    aten::softmax         0.05%      14.000us        16.15%       4.257ms       4.257ms      14.000us         0.05%       4.265ms       4.265ms             1  
+                                   aten::_softmax         0.10%      27.000us        16.08%       4.240ms       4.240ms       4.251ms        16.07%       4.251ms       4.251ms             1  
+                                    aten::reshape         0.15%      39.000us         0.25%      66.000us      16.500us      48.000us         0.18%      78.000us      19.500us             4  
+                                     aten::expand         0.13%      34.000us         0.17%      44.000us      11.000us      44.000us         0.17%      57.000us      14.250us             4  
+                                  aten::transpose         0.13%      35.000us         0.19%      49.000us      49.000us      38.000us         0.14%      53.000us      53.000us             1  
+                                 aten::as_strided         0.05%      14.000us         0.05%      14.000us       2.800us      28.000us         0.11%      28.000us       5.600us             5  
+                                       aten::view         0.05%      14.000us         0.05%      14.000us       4.667us      23.000us         0.09%      23.000us       7.667us             3  
+                             aten::_reshape_alias         0.02%       5.000us         0.02%       5.000us       5.000us       7.000us         0.03%       7.000us       7.000us             1  
+                               aten::_unsafe_view         0.03%       9.000us         0.03%       9.000us       4.500us       6.000us         0.02%       6.000us       3.000us             2  
+                                  cudaEventRecord         0.29%      77.000us         0.29%      77.000us       1.426us       0.000us         0.00%       0.000us       0.000us            54  
+                                         cudaFree        36.73%       9.683ms        36.73%       9.683ms       4.841ms       0.000us         0.00%       0.000us       0.000us             2  
+                           cudaDeviceGetAttribute         0.00%       0.000us         0.00%       0.000us       0.000us       0.000us         0.00%       0.000us       0.000us            14  
+-------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 26.362ms
+Self CUDA time total: 26.460ms
+
+-------------------------- profiling flash attention --------------------------
+--------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                      Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+--------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+          aten::zeros_like         0.38%      18.000us        19.88%     944.000us     944.000us      19.000us         1.40%     947.000us     947.000us             1  
+               aten::zero_         0.55%      26.000us        19.54%     928.000us     464.000us      27.000us         1.99%     935.000us     467.500us             2  
+               aten::fill_         0.95%      45.000us        19.06%     905.000us     301.667us     918.000us        67.60%     918.000us     306.000us             3  
+                  aten::to         0.23%      11.000us         6.80%     323.000us     161.500us      17.000us         1.25%     329.000us     164.500us             2  
+            aten::_to_copy         0.63%      30.000us         6.49%     308.000us     154.000us      31.000us         2.28%     312.000us     156.000us             2  
+       aten::empty_strided         0.53%      25.000us         4.13%     196.000us      65.333us     207.000us        15.24%     207.000us      69.000us             3  
+               aten::copy_         0.27%      13.000us         1.73%      82.000us      41.000us      86.000us         6.33%      86.000us      43.000us             2  
+               aten::zeros         0.27%      13.000us         1.05%      50.000us      50.000us      16.000us         1.18%      54.000us      54.000us             1  
+                aten::full         0.27%      13.000us         0.53%      25.000us      25.000us      15.000us         1.10%      28.000us      28.000us             1  
+          aten::empty_like         0.23%      11.000us         0.46%      22.000us      22.000us      13.000us         0.96%      25.000us      25.000us             1  
+               aten::empty         0.11%       5.000us         0.11%       5.000us       2.500us       9.000us         0.66%       9.000us       4.500us             2  
+           cudaEventRecord         0.93%      44.000us         0.93%      44.000us       1.100us       0.000us         0.00%       0.000us       0.000us            40  
+          cudaLaunchKernel        19.52%     927.000us        19.52%     927.000us     463.500us       0.000us         0.00%       0.000us       0.000us             2  
+     cudaStreamIsCapturing         0.00%       0.000us         0.00%       0.000us       0.000us       0.000us         0.00%       0.000us       0.000us             1  
+                cudaMalloc         3.60%     171.000us         3.60%     171.000us     171.000us       0.000us         0.00%       0.000us       0.000us             1  
+--------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 4.749ms
+Self CUDA time total: 1.358ms
+
+sanity check: True

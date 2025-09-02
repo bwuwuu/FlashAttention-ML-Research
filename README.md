@@ -1,0 +1,4 @@
+How to run:
+- Run the run.sh file on your local computer 
+or 
+- Run the job.sl file on CARC (make sure to create an virtual env with conda)
